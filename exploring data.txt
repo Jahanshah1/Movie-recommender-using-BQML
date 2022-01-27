@@ -1,0 +1,22 @@
+SELECT
+  COUNT(DISTINCT userId) numUsers,
+  COUNT(DISTINCT movieId) numMovies,
+  COUNT(*) totalRatings
+FROM
+  movies.movielens_ratings
+
+
+SELECT
+  *
+FROM
+  movies.movielens_movies_raw
+WHERE
+  movieId < 5
+
+
+CREATE OR REPLACE TABLE
+  movies.movielens_movies AS
+SELECT
+  * REPLACE(SPLIT(genres, "|") AS genres)
+FROM
+  movies.movielens_movies_raw
